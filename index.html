@@ -390,7 +390,10 @@
     {
       id: "contact",
       triggers: ["contact", "phone number", "your number", "email address", "how do i reach you",
-        "get in touch", "reach you", "contact number", "phone", "email", "call you"],
+        "get in touch", "reach you", "contact number", "phone", "email", "call you",
+        "how to call", "how do i call", "how can i call", "can i call", "give you a call",
+        "ring you", "ring the clinic", "who do i call", "who can i call", "speak to someone",
+        "talk to someone", "talk to a person"],
       answer: function (msg) {
         var loc = detectLocation(msg);
         function line(key) {
@@ -404,7 +407,9 @@
     },
     {
       id: "location",
-      triggers: ["address", "location", "where are you", "directions", "find you", "parking", "how do i get"],
+      triggers: ["address", "location", "where are you", "directions", "find you", "parking", "how do i get",
+        "where is the clinic", "where's the clinic", "where can i find you", "which suburb",
+        "where are you located", "how far", "nearest"],
       answer: function (msg) {
         var loc = detectLocation(msg);
         function line(key) {
@@ -427,7 +432,9 @@
     {
       id: "hours",
       triggers: ["hours", "open", "close", "opening time", "closing time", "what time",
-        "public holiday", "weekend", "what days"],
+        "public holiday", "weekend", "what days", "your hours", "when do you open",
+        "when do you close", "still open", "are you open", "what time do you open",
+        "what time do you close", "opening hours", "operating hours", "trading hours"],
       answer: function (msg) {
         var loc = detectLocation(msg);
         function line(key) {
@@ -441,7 +448,8 @@
     },
     {
       id: "payment",
-      triggers: ["payment method", "how do i pay", "eftpos", "afterpay", "credit card", "accept card", "do you take card"],
+      triggers: ["payment method", "how do i pay", "eftpos", "afterpay", "credit card", "accept card", "do you take card",
+        "zip pay", "zippay", "humm", "payment plan", "payment options", "ways to pay", "can i pay"],
       answer: function () {
         return CONFIG.paymentMethods ? CONFIG.paymentMethods :
           "Accepted payment methods aren't listed on our website — please call the clinic to confirm before your visit.";
@@ -462,7 +470,8 @@
     },
     {
       id: "doctors",
-      triggers: ["vet", "doctor", "veterinarian", "who are your vets", "how many vets"],
+      triggers: ["vet", "doctor", "veterinarian", "who are your vets", "how many vets",
+        "who will see", "who is on today", "which vet", "meet the team", "meet the vets"],
       answer: function () { return CONFIG.doctorsText; }
     },
     {
@@ -472,7 +481,8 @@
     },
     {
       id: "boarding",
-      triggers: ["board", "boarding", "kennel stay", "cattery"],
+      triggers: ["board", "boarding", "kennel stay", "cattery", "cat boarding", "dog boarding",
+        "stay overnight", "look after my pet while", "pet minding", "pet sitting"],
       answer: function () {
         return CONFIG.boarding ? CONFIG.boarding :
           "Boarding isn't something we currently list online — please call the clinic to check availability.";
@@ -507,18 +517,24 @@
       id: "services",
       triggers: ["service", "dental", "dentistry", "desex", "desexing", "spay", "neuter", "surgery",
         "surgical", "x-ray", "xray", "blood test", "diagnostic", "ultrasound", "microchip", "grooming",
-        "hydrobath", "puppy preschool", "puppy pre-school", "canine college", "palliative", "wildlife", "stray"],
+        "hydrobath", "puppy preschool", "puppy pre-school", "canine college", "palliative", "wildlife", "stray",
+        "what do you offer", "what do you do", "what can you help with", "do you do teeth",
+        "do you do vaccinations", "vaccination", "vaccine", "house call", "puppy classes",
+        "dog training", "cat grooming"],
       answer: function () { return CONFIG.servicesText; }
     },
     {
       id: "story",
       triggers: ["why choose", "what makes you different", "how long have you been open", "how many years",
-        "award", "differentiate", "what's special"],
+        "award", "differentiate", "what's special", "tell me about your clinic", "tell me about your practice",
+        "about your hospital", "your history", "how long have you been operating"],
       answer: function () { return CONFIG.storyText; }
     },
     {
       id: "booking",
-      triggers: ["book", "appointment", "schedule", "booking", "reserve", "walk in", "walk-in"],
+      triggers: ["book", "appointment", "schedule", "booking", "reserve", "walk in", "walk-in",
+        "make an appointment", "set up an appointment", "get an appointment",
+        "come in", "bring my pet in", "next available"],
       answer: function (msg) {
         var loc = detectLocation(msg);
         var note = "Appointments are needed for routine consultations, but if it's urgent, call us straight away and we'll fit you in — emergencies are always given priority.";
@@ -846,6 +862,7 @@
       { name: "weekend hours", input: "are you open saturday", expectIntentId: "hours", expectContains: ["Sat"] },
       { name: "named toxin emergency", input: "my dog ate chocolate", expectIntentId: "emergency", expectContains: ["emergency"] },
       { name: "snake bite with typo", input: "biten by snake", expectIntentId: "emergency", expectContains: ["emergency"] },
+      { name: "how to call phrasing", input: "how to call?", expectIntentId: "contact", expectContains: ["Phone"] },
       { name: "multi-symptom emergency combo", input: "vomiting and won't wake up", expectIntentId: "emergency", expectContains: ["emergency"] },
       { name: "non-emergency symptom", input: "my dog has a fever", expectIntentId: "symptom", expectNotContains: ["call us right away"] },
       { name: "bare contact phrasing", input: "contact number", expectIntentId: "contact", expectContains: ["Phone"] },
