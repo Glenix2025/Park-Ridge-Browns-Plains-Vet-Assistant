@@ -364,7 +364,10 @@
     "fever", "temperature", "limping", "lame", "itchy", "itching", "rash",
     "not eating", "off his food", "off her food", "off food", "diarrhea", "diarrhoea",
     "lethargic", "lethargy", "coughing", "sneezing", "discharge", "swelling",
-    "lump", "not himself", "not herself", "unwell"
+    "lump", "not himself", "not herself", "unwell", "not feeling well", "feeling unwell",
+    "feeling off", "seems unwell", "seems off", "acting strange", "acting weird",
+    "not right", "not quite right", "not well", "under the weather", "not doing well",
+    "not himself today", "not herself today", "isn't himself", "isn't herself"
   ];
 
   /* ============================================================
@@ -462,8 +465,8 @@
     },
     {
       id: "pricing",
-      triggers: ["how much", "price", "pricing", "cost", "fee", "quote", "cat consult", "dog checkup",
-        "consult cost", "how expensive"],
+      triggers: ["how much", "price", "pricing", "cost", "fees", "quote", "cat consult", "dog checkup",
+        "consult cost", "how expensive", "what's the fee", "consultation fee"],
       answer: function () {
         return "Pricing depends on the case — please call us for a quote. " + CONFIG.consultLengthText;
       }
@@ -863,6 +866,7 @@
       { name: "named toxin emergency", input: "my dog ate chocolate", expectIntentId: "emergency", expectContains: ["emergency"] },
       { name: "snake bite with typo", input: "biten by snake", expectIntentId: "emergency", expectContains: ["emergency"] },
       { name: "how to call phrasing", input: "how to call?", expectIntentId: "contact", expectContains: ["Phone"] },
+      { name: "not feeling well symptom", input: "not feeling well", expectIntentId: "symptom", expectNotContains: ["quote", "consultations run"] },
       { name: "multi-symptom emergency combo", input: "vomiting and won't wake up", expectIntentId: "emergency", expectContains: ["emergency"] },
       { name: "non-emergency symptom", input: "my dog has a fever", expectIntentId: "symptom", expectNotContains: ["call us right away"] },
       { name: "bare contact phrasing", input: "contact number", expectIntentId: "contact", expectContains: ["Phone"] },
